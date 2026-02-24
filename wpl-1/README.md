@@ -40,6 +40,8 @@ git checkout feature/semantic-portfolio
 
 > Hocanın istediği **Accessibility skoru 90+** hedefine ulaşıldı → **100 / 100**
 
+![Lighthouse Raporu](screenshots/Ekran%20Resmi%202026-02-24%2022.30.32.png)
+
 ---
 
 ## 🚀 Kurulum & Çalıştırma
