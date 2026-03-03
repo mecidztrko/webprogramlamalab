@@ -1,290 +1,400 @@
+@import './styles/tokens.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* =============================================
-   Base Reset & Typography
+   GENEL SIFIRLAMA (Reset)
    ============================================= */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-:root {
-  font-family: 'Segoe UI', system-ui, Arial, sans-serif;
-  font-size: 16px;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
   line-height: 1.6;
-  color: #213547;
-  background-color: #f5f7fa;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* =============================================
-   Uygulama 5: Skip Link (a11y)
+   SKIP LINK (Erişilebilirlik — LAB-2)
    ============================================= */
 .skip-link {
   position: absolute;
   top: -100%;
   left: 1rem;
-  background: #2563eb;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 0 0 6px 6px;
+  background: var(--color-secondary);
+  color: var(--color-bg);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
   text-decoration: none;
   font-weight: 600;
   z-index: 1000;
-  transition: top 0.2s;
+  transition: top var(--transition-fast);
 }
+
 .skip-link:focus {
   top: 0;
 }
 
 /* =============================================
-   Uygulama 1: Header & Nav (Semantic)
+   FOCUS GÖSTERGELERİ (Erişilebilirlik — LAB-2)
    ============================================= */
-.site-header {
-  background: linear-gradient(135deg, #1e3a5f, #2563eb);
-  color: #fff;
-  padding: 2rem;
-  text-align: center;
-}
-
-.header-inner h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.25rem;
-}
-
-.subtitle {
-  font-size: 1rem;
-  opacity: 0.85;
-  margin-bottom: 1.5rem;
-}
-
-nav[aria-label="Ana Navigasyon"] ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-nav[aria-label="Ana Navigasyon"] a {
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-  padding: 0.3rem 0.75rem;
-  border-radius: 4px;
-  transition: background 0.2s;
-}
-
-nav[aria-label="Ana Navigasyon"] a:hover,
-nav[aria-label="Ana Navigasyon"] a:focus {
-  background: rgba(255,255,255,0.2);
-  outline: none;
-}
-
-/* Uygulama 5: Focus indicators */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
-textarea:focus-visible {
-  outline: 3px solid #2563eb;
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--color-secondary);
   outline-offset: 2px;
 }
 
 /* =============================================
-   Main content
+   HEADER — Flexbox (LAB-3 Uygulama-4)
    ============================================= */
-main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
+.site-header {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-bg);
+  padding: var(--space-md);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: var(--shadow-md);
 }
 
-section {
-  margin-bottom: 3rem;
+.header-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
 }
 
-section h2 {
-  font-size: 1.75rem;
-  color: #1e3a5f;
-  border-bottom: 3px solid #2563eb;
-  padding-bottom: 0.4rem;
-  margin-bottom: 1.5rem;
+.header-inner h1 {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: var(--text-sm);
+  opacity: 0.85;
+  text-align: center;
+}
+
+/* NAV — Flexbox */
+nav[aria-label="Ana Navigasyon"] {
+  width: 100%;
+}
+
+nav[aria-label="Ana Navigasyon"] ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  gap: var(--space-xs);
+  padding: 0;
+  margin: 0;
+}
+
+nav[aria-label="Ana Navigasyon"] a {
+  display: block;
+  color: var(--color-bg);
+  font-weight: 600;
+  text-decoration: none;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast), color var(--transition-fast);
+  text-align: center;
+  width: 100%;
+}
+
+nav[aria-label="Ana Navigasyon"] a:hover,
+nav[aria-label="Ana Navigasyon"] a:focus {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 /* =============================================
-   Uygulama 2: About grid - article + aside
+   MAIN İÇERİK — MOBİL VARSAYILAN
    ============================================= */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+main {
+  padding: var(--space-xl) var(--space-md);
 }
 
-@media (max-width: 600px) {
-  .about-grid  { grid-template-columns: 1fr; }
+section {
+  padding: var(--space-xl) 0;
+  margin-bottom: 0;
 }
 
-article {
-  background: #fff;
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+section h2 {
+  font-size: var(--text-2xl);
+  color: var(--color-primary);
+  border-bottom: 3px solid var(--color-secondary);
+  padding-bottom: var(--space-xs);
+  margin-bottom: var(--space-lg);
+  text-align: center;
 }
 
-article h3 {
-  font-size: 1.1rem;
-  color: #1e3a5f;
-  margin-bottom: 0.75rem;
+/* =============================================
+   HAKKIMDA — Flexbox (tek sütun → yatay)
+   ============================================= */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  text-align: center;
 }
 
-aside {
+.about-article {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+  transition: box-shadow var(--transition-normal);
+}
+
+.about-article:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.about-article h3 {
+  font-size: var(--text-lg);
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.about-article p {
+  font-size: var(--text-base);
+  color: var(--color-muted);
+  line-height: 1.7;
+  margin-bottom: var(--space-sm);
+}
+
+.about-aside {
   background: #eef2ff;
-  border-left: 4px solid #2563eb;
-  border-radius: 10px;
-  padding: 1.5rem;
+  border-left: 4px solid var(--color-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  width: 100%;
 }
 
-aside h3 {
-  color: #1e3a5f;
-  margin-bottom: 0.75rem;
+.about-aside h3 {
+  font-size: var(--text-lg);
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
 }
 
 dl {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 0.4rem 1rem;
+  gap: var(--space-xs) var(--space-md);
 }
 
-dt { font-weight: 700; color: #374151; }
-dd { color: #555; }
+dt {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+dd {
+  color: var(--color-muted);
+}
 
 /* =============================================
-   Uygulama 2: Projects - figure + figcaption
+   SKILL TAGS — Flexbox Toolbar (LAB-3 Uygulama-5)
+   ============================================= */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-md);
+  justify-content: center;
+}
+
+.skill-tags li {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.skill-tags li:hover {
+  background-color: var(--color-secondary);
+  transform: translateY(-2px);
+}
+
+/* =============================================
+   PROJE KARTLARI — CSS Grid (LAB-3 Uygulama-6)
    ============================================= */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
 }
 
 .project-card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 .project-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  box-shadow: var(--shadow-lg);
 }
 
 .project-img {
-  font-size: 3rem;
+  font-size: 3.5rem;
   text-align: center;
-  margin-bottom: 0.5rem;
+  padding: var(--space-xl);
+  background: linear-gradient(135deg, #EEF2FF, #DBEAFE);
 }
 
 figure {
-  margin-bottom: 1rem;
-  text-align: center;
+  margin: 0;
 }
 
 figcaption {
-  font-size: 0.85rem;
-  color: #6b7280;
-  margin-top: 0.25rem;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  text-align: center;
+  padding: var(--space-xs) var(--space-md);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .project-card h3 {
-  font-size: 1.1rem;
-  color: #1e3a5f;
-  margin-bottom: 0.5rem;
+  font-size: var(--text-lg);
+  color: var(--color-primary);
+  padding: var(--space-md) var(--space-lg) var(--space-xs);
+}
+
+.project-card p {
+  font-size: var(--text-base);
+  color: var(--color-muted);
+  padding: 0 var(--space-lg);
+  flex-grow: 1;
+  line-height: 1.7;
 }
 
 .project-card time {
-  font-size: 0.8rem;
-  color: #2563eb;
+  font-size: var(--text-sm);
+  color: var(--color-secondary);
   font-weight: 600;
+  padding: var(--space-sm) var(--space-lg);
+}
+
+.project-card .skill-tags {
+  padding: var(--space-sm) var(--space-lg) var(--space-lg);
+  margin-top: 0;
+  justify-content: flex-start;
 }
 
 /* =============================================
-   Uygulama 3 & 4: Accessible Form + Validation
+   İLETİŞİM FORMU
    ============================================= */
 .contact-form {
-  background: #fff;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  max-width: 600px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-sm);
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.25rem;
+  margin-bottom: var(--space-md);
 }
 
 .form-group label {
   font-weight: 600;
-  color: #374151;
-  margin-bottom: 0.4rem;
-  font-size: 0.95rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+  font-size: var(--text-base);
 }
 
 .form-group label span {
-  color: #dc2626;
+  color: var(--color-error);
 }
 
 .form-group input,
 .form-group textarea {
-  padding: 0.6rem 0.85rem;
-  border: 2px solid #d1d5db;
-  border-radius: 6px;
-  font-family: inherit;
-  font-size: 1rem;
-  color: #213547;
-  background: #f9fafb;
-  transition: border-color 0.2s;
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  transition: border-color var(--transition-fast);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #2563eb;
-  background: #fff;
-  outline: none;
+  border-color: var(--color-secondary);
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
 }
 
 .form-group input:invalid:not(:placeholder-shown),
 .form-group textarea:invalid:not(:placeholder-shown) {
-  border-color: #dc2626;
+  border-color: var(--color-error);
 }
 
-.form-group input:invalid:not(:placeholder-shown) + .error-msg,
-.form-group textarea:invalid:not(:placeholder-shown) + .error-msg {
+.form-group input:invalid:not(:placeholder-shown)+.error-msg,
+.form-group textarea:invalid:not(:placeholder-shown)+.error-msg {
   display: block;
 }
 
 .error-msg {
   display: none;
-  color: #dc2626;
-  font-size: 0.82rem;
-  margin-top: 0.3rem;
+  color: var(--color-error);
+  font-size: var(--text-sm);
+  margin-top: var(--space-xs);
 }
 
 button[type="submit"] {
-  background: #2563eb;
-  color: #fff;
+  width: 100%;
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--color-primary);
+  color: var(--color-bg);
   border: none;
-  padding: 0.75rem 2rem;
-  border-radius: 8px;
-  font-size: 1rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  transition: background var(--transition-fast), transform var(--transition-fast);
 }
 
-button[type="submit"]:hover {
-  background: #1d4ed8;
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+  background: var(--color-secondary);
 }
 
 button[type="submit"]:active {
@@ -292,12 +402,109 @@ button[type="submit"]:active {
 }
 
 /* =============================================
-   Footer
+   FOOTER
    ============================================= */
 footer {
   text-align: center;
-  padding: 1.5rem;
-  background: #1e3a5f;
-  color: rgba(255,255,255,0.8);
-  font-size: 0.9rem;
+  padding: var(--space-xl) var(--space-md);
+  background: var(--color-primary);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--text-sm);
+  border-top: 1px solid var(--color-border);
+}
+
+/* =============================================
+   TABLET (640px ve üzeri) — LAB-3 Uygulama-7
+   ============================================= */
+@media (min-width: 640px) {
+
+  /* Header yatay düzen */
+  .header-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .header-inner h1 {
+    text-align: left;
+  }
+
+  .subtitle {
+    text-align: left;
+  }
+
+  nav[aria-label="Ana Navigasyon"] {
+    width: auto;
+  }
+
+  nav[aria-label="Ana Navigasyon"] ul {
+    flex-direction: row;
+    gap: var(--space-xs);
+  }
+
+  nav[aria-label="Ana Navigasyon"] a {
+    width: auto;
+    text-align: center;
+  }
+
+  /* Hakkımda yatay düzen */
+  .about-content {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .about-article {
+    flex: 2;
+  }
+
+  .about-aside {
+    flex: 1;
+  }
+
+  .skill-tags {
+    justify-content: flex-start;
+  }
+
+  /* Section boşlukları artar */
+  section {
+    padding: var(--space-2xl) 0;
+  }
+
+  main {
+    padding: var(--space-2xl) var(--space-xl);
+  }
+
+  /* Form butonu tam genişlik olmaktan çıkar */
+  button[type="submit"] {
+    width: auto;
+  }
+}
+
+/* =============================================
+   MASAÜSTÜ (1024px ve üzeri) — LAB-3 Uygulama-7
+   ============================================= */
+@media (min-width: 1024px) {
+
+  /* İçerik genişliği sınırla */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-3xl) var(--space-xl);
+  }
+
+  section {
+    padding: var(--space-3xl) 0;
+  }
+
+  /* Proje kartları: en az 3 sütun */
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Daha büyük section başlıkları */
+  section h2 {
+    text-align: left;
+  }
 }
