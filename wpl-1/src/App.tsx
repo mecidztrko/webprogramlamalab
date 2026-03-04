@@ -3,45 +3,61 @@ import './App.css'
 function App() {
   return (
     <>
-      {/* Skip to Content - Uygulama 5 */}
+      {/* Skip to Content - Erişilebilirlik (LAB-2) */}
       <a href="#main-content" className="skip-link">İçeriğe Geç</a>
 
-      {/* Uygulama 1: Semantic Skeleton */}
+      {/* HEADER — Flexbox responsive (LAB-3) */}
       <header className="site-header">
         <div className="header-inner">
-          <h1>Abdulmecit ÖZTÜRK</h1>
-          <p className="subtitle">Yazılım Mühendisliği Öğrencisi · No: 235541034</p>
+          <div>
+            <h1>Abdulmecit ÖZTÜRK</h1>
+            <p className="subtitle">Yazılım Mühendisliği Öğrencisi · No: 235541034</p>
+          </div>
+          <nav aria-label="Ana Navigasyon">
+            <ul>
+              <li><a href="#hakkimda">Hakkımda</a></li>
+              <li><a href="#projeler">Projeler</a></li>
+              <li><a href="#iletisim">İletişim</a></li>
+            </ul>
+          </nav>
         </div>
-        <nav aria-label="Ana Navigasyon">
-          <ul>
-            <li><a href="#hakkimda">Hakkımda</a></li>
-            <li><a href="#projeler">Projeler</a></li>
-            <li><a href="#iletisim">İletişim</a></li>
-          </ul>
-        </nav>
       </header>
 
-      {/* Uygulama 1 & 2: Semantic main + article/aside/figure */}
+      {/* ANA İÇERİK */}
       <main id="main-content">
 
-        {/* Uygulama 2: article, aside, time, figure, figcaption */}
+        {/* HAKKIMDA — Flexbox layout (LAB-3 Uygulama-3) */}
         <section id="hakkimda" aria-labelledby="hakkimda-baslik">
           <h2 id="hakkimda-baslik">Hakkımda</h2>
-          <div className="about-grid">
-            <article>
+          <div className="about-content">
+            <article className="about-article">
               <h3>Öğrenci Bilgileri</h3>
               <p>
                 Web Tasarımı ve Programlama dersi kapsamında
                 <time dateTime="2025-02-24"> Şubat 2025</time> tarihinde
-                hazırlanmış LAB-2 portfolyo sayfasıdır.
+                hazırlanmış LAB-3 portfolyo sayfasıdır.
               </p>
               <p>
-                Semantic HTML5, erişilebilirlik (a11y) ve form temelleri konularını
-                kapsayan bu uygulama, modern web standartlarına uygun olarak geliştirilmiştir.
+                Semantic HTML5, erişilebilirlik (a11y), Flexbox, CSS Grid ve
+                responsive tasarım konularını kapsayan bu uygulama,
+                modern web standartlarına uygun olarak geliştirilmiştir.
               </p>
+
+              {/* Skill Tags Toolbar — Flexbox (LAB-3 Uygulama-5) */}
+              <ul className="skill-tags" role="list" aria-label="Beceri etiketleri">
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>Flexbox</li>
+                <li>CSS Grid</li>
+                <li>JavaScript</li>
+                <li>React</li>
+                <li>TypeScript</li>
+                <li>Git</li>
+                <li>Vite</li>
+              </ul>
             </article>
 
-            <aside aria-label="Kişisel Bilgiler">
+            <aside className="about-aside" aria-label="Kişisel Bilgiler">
               <h3>Kişisel Bilgiler</h3>
               <dl>
                 <dt>Ad Soyad</dt>
@@ -50,38 +66,69 @@ function App() {
                 <dd>235541034</dd>
                 <dt>Bölüm</dt>
                 <dd>Yazılım Mühendisliği</dd>
+                <dt>Dönem</dt>
+                <dd>2024–2025 Bahar</dd>
+                <dt>Lab</dt>
+                <dd>LAB-3</dd>
               </dl>
             </aside>
           </div>
         </section>
 
-        {/* Uygulama 2: figure + figcaption */}
+        {/* PROJELER — CSS Grid (LAB-3 Uygulama-6) */}
         <section id="projeler" aria-labelledby="projeler-baslik">
           <h2 id="projeler-baslik">Projeler</h2>
           <div className="projects-grid">
+
             <article className="project-card">
               <figure>
                 <div className="project-img" role="img" aria-label="Web Lab Projesi görseli">💻</div>
-                <figcaption>Web Lab - React + Vite Projesi</figcaption>
+                <figcaption>Web Lab — React + Vite Projesi</figcaption>
               </figure>
               <h3>Web Lab Hello</h3>
-              <p>Vite ve React ile oluşturulan LAB-1 ve LAB-2 projesi.</p>
+              <p>Vite ve React ile oluşturulan LAB-1 ve LAB-2 portfolyo projesi.</p>
+              <ul className="skill-tags" role="list" aria-label="Kullanılan teknolojiler">
+                <li>React</li>
+                <li>Vite</li>
+                <li>TypeScript</li>
+              </ul>
               <time dateTime="2025-02">Şubat 2025</time>
             </article>
 
             <article className="project-card">
               <figure>
                 <div className="project-img" role="img" aria-label="Semantic HTML projesi görseli">🌐</div>
-                <figcaption>Semantic HTML5 Portfolio</figcaption>
+                <figcaption>Semantic HTML5 Portfolyo</figcaption>
               </figure>
               <h3>Semantic Portfolio</h3>
               <p>Semantic HTML5 ve erişilebilirlik standartlarına uygun portfolyo sayfası.</p>
+              <ul className="skill-tags" role="list" aria-label="Kullanılan teknolojiler">
+                <li>HTML5</li>
+                <li>Erişilebilirlik</li>
+                <li>ARIA</li>
+              </ul>
               <time dateTime="2025-02">Şubat 2025</time>
             </article>
+
+            <article className="project-card">
+              <figure>
+                <div className="project-img" role="img" aria-label="Responsive Tasarım projesi görseli">📱</div>
+                <figcaption>Responsive Tasarım — LAB-3</figcaption>
+              </figure>
+              <h3>Responsive Layout</h3>
+              <p>CSS Grid, Flexbox ve mobile-first yaklaşımıyla oluşturulan responsive portfolyo.</p>
+              <ul className="skill-tags" role="list" aria-label="Kullanılan teknolojiler">
+                <li>CSS Grid</li>
+                <li>Flexbox</li>
+                <li>Responsive</li>
+              </ul>
+              <time dateTime="2025-03">Mart 2025</time>
+            </article>
+
           </div>
         </section>
 
-        {/* Uygulama 3 & 4: Accessible Form + Validation */}
+        {/* İLETİŞİM FORMU — LAB-2 Korundu */}
         <section id="iletisim" aria-labelledby="iletisim-baslik">
           <h2 id="iletisim-baslik">İletişim Formu</h2>
 
@@ -164,9 +211,9 @@ function App() {
 
       </main>
 
-      {/* Uygulama 1: footer */}
+      {/* FOOTER */}
       <footer>
-        <p>© 2025 Abdulmecit ÖZTÜRK · Yazılım Mühendisliği · Web Tasarımı ve Programlama</p>
+        <p>© 2025 Abdulmecit ÖZTÜRK · Yazılım Mühendisliği · Web Tasarımı ve Programlama — LAB-3</p>
       </footer>
     </>
   )
