@@ -1,221 +1,245 @@
-import './App.css'
+import { useState } from 'react'
+import Button from './components/Button'
+import Input from './components/Input'
+import Card from './components/Card'
+import UIKit from './pages/UIKit'
 
 function App() {
-  return (
-    <>
-      {/* Skip to Content - Erişilebilirlik (LAB-2) */}
-      <a href="#main-content" className="skip-link">İçeriğe Geç</a>
+  const [page, setPage] = useState<'portfolio' | 'uikit'>('portfolio')
 
-      {/* HEADER — Flexbox responsive (LAB-3) */}
-      <header className="site-header">
-        <div className="header-inner">
+  return (
+    <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
+      {/* Dark Mode Toggle */}
+      <button
+        onClick={() => document.documentElement.classList.toggle('dark')}
+        className="fixed top-4 right-4 z-50
+          bg-gray-200 dark:bg-gray-700
+          text-gray-800 dark:text-gray-200
+          p-2 rounded-full shadow-lg
+          hover:scale-110 transition-transform cursor-pointer"
+        aria-label="Tema değiştir"
+      >
+        <span className="dark:hidden">&#9790;</span>
+        <span className="hidden dark:inline">&#9728;</span>
+      </button>
+
+      {/* Skip to Content - Erişilebilirlik */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0
+          bg-blue-800 text-white p-2 z-50"
+      >
+        İçeriğe Geç
+      </a>
+
+      {/* HEADER */}
+      <header className="sticky top-0 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-3">
           <div>
-            <h1>Abdulmecit ÖZTÜRK</h1>
-            <p className="subtitle">Yazılım Mühendisliği Öğrencisi · No: 235541034</p>
+            <h1
+              className="text-xl font-bold text-blue-800 dark:text-blue-300 cursor-pointer"
+              onClick={() => setPage('portfolio')}
+            >
+              Abdulmecit ÖZTÜRK
+            </h1>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              Yazılım Mühendisliği Öğrencisi · No: 235541034
+            </p>
           </div>
-          <nav aria-label="Ana Navigasyon">
-            <ul>
-              <li><a href="#hakkimda">Hakkımda</a></li>
-              <li><a href="#projeler">Projeler</a></li>
-              <li><a href="#iletisim">İletişim</a></li>
+          <nav aria-label="Ana navigasyon">
+            <ul className="flex flex-wrap gap-2">
+              <li>
+                <a
+                  href="#hakkimda"
+                  onClick={() => setPage('portfolio')}
+                  className="px-3 py-1 rounded-md text-gray-700 dark:text-gray-300
+                    hover:bg-blue-100 dark:hover:bg-gray-800 transition-colors"
+                >
+                  Hakkımda
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#projeler"
+                  onClick={() => setPage('portfolio')}
+                  className="px-3 py-1 rounded-md text-gray-700 dark:text-gray-300
+                    hover:bg-blue-100 dark:hover:bg-gray-800 transition-colors"
+                >
+                  Projeler
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#iletisim"
+                  onClick={() => setPage('portfolio')}
+                  className="px-3 py-1 rounded-md text-gray-700 dark:text-gray-300
+                    hover:bg-blue-100 dark:hover:bg-gray-800 transition-colors"
+                >
+                  İletişim
+                </a>
+              </li>
+              <li>
+                <button
+                  onClick={() => setPage('uikit')}
+                  className={`px-3 py-1 rounded-md transition-colors ${
+                    page === 'uikit'
+                      ? 'bg-blue-600 text-white'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-800'
+                  }`}
+                >
+                  UI Kit
+                </button>
+              </li>
             </ul>
           </nav>
         </div>
       </header>
 
-      {/* ANA İÇERİK */}
-      <main id="main-content">
+      {/* CONTENT */}
+      {page === 'uikit' ? (
+        <UIKit />
+      ) : (
+        <main id="main-content">
 
-        {/* HAKKIMDA — Flexbox layout (LAB-3 Uygulama-3) */}
-        <section id="hakkimda" aria-labelledby="hakkimda-baslik">
-          <h2 id="hakkimda-baslik">Hakkımda</h2>
-          <div className="about-content">
-            <article className="about-article">
-              <h3>Öğrenci Bilgileri</h3>
-              <p>
-                Web Tasarımı ve Programlama dersi kapsamında
-                <time dateTime="2025-02-24"> Şubat 2025</time> tarihinde
-                hazırlanmış LAB-3 portfolyo sayfasıdır.
-              </p>
-              <p>
-                Semantic HTML5, erişilebilirlik (a11y), Flexbox, CSS Grid ve
-                responsive tasarım konularını kapsayan bu uygulama,
-                modern web standartlarına uygun olarak geliştirilmiştir.
-              </p>
+          {/* HAKKIMDA */}
+          <section id="hakkimda" className="py-16 px-4">
+            <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-8">
+              {/* Sol: Bilgiler */}
+              <div className="flex-1">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 text-center md:text-left">
+                  Hakkımda
+                </h2>
+                <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                  Web Tasarımı ve Programlama dersi kapsamında hazırlanmış LAB-4 portfolyo sayfasıdır.
+                  Semantic HTML5, erişilebilirlik (a11y), Tailwind CSS ve component yaklaşımı konularını
+                  kapsayan bu uygulama, modern web standartlarına uygun olarak geliştirilmiştir.
+                </p>
+                <ul className="flex flex-wrap gap-2">
+                  {['HTML5', 'CSS3', 'React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Git'].map((tag) => (
+                    <li
+                      key={tag}
+                      className="bg-blue-800 text-white px-3 py-1 rounded-full text-sm
+                        hover:bg-blue-600 transition-colors dark:bg-blue-600 dark:hover:bg-blue-500"
+                    >
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-              {/* Skill Tags Toolbar — Flexbox (LAB-3 Uygulama-5) */}
-              <ul className="skill-tags" role="list" aria-label="Beceri etiketleri">
-                <li>HTML5</li>
-                <li>CSS3</li>
-                <li>Flexbox</li>
-                <li>CSS Grid</li>
-                <li>JavaScript</li>
-                <li>React</li>
-                <li>TypeScript</li>
-                <li>Git</li>
-                <li>Vite</li>
-              </ul>
-            </article>
-
-            <aside className="about-aside" aria-label="Kişisel Bilgiler">
-              <h3>Kişisel Bilgiler</h3>
-              <dl>
-                <dt>Ad Soyad</dt>
-                <dd>Abdulmecit ÖZTÜRK</dd>
-                <dt>Öğrenci No</dt>
-                <dd>235541034</dd>
-                <dt>Bölüm</dt>
-                <dd>Yazılım Mühendisliği</dd>
-                <dt>Dönem</dt>
-                <dd>2024–2025 Bahar</dd>
-                <dt>Lab</dt>
-                <dd>LAB-3</dd>
-              </dl>
-            </aside>
-          </div>
-        </section>
-
-        {/* PROJELER — CSS Grid (LAB-3 Uygulama-6) */}
-        <section id="projeler" aria-labelledby="projeler-baslik">
-          <h2 id="projeler-baslik">Projeler</h2>
-          <div className="projects-grid">
-
-            <article className="project-card">
-              <figure>
-                <div className="project-img" role="img" aria-label="Web Lab Projesi görseli">💻</div>
-                <figcaption>Web Lab — React + Vite Projesi</figcaption>
-              </figure>
-              <h3>Web Lab Hello</h3>
-              <p>Vite ve React ile oluşturulan LAB-1 ve LAB-2 portfolyo projesi.</p>
-              <ul className="skill-tags" role="list" aria-label="Kullanılan teknolojiler">
-                <li>React</li>
-                <li>Vite</li>
-                <li>TypeScript</li>
-              </ul>
-              <time dateTime="2025-02">Şubat 2025</time>
-            </article>
-
-            <article className="project-card">
-              <figure>
-                <div className="project-img" role="img" aria-label="Semantic HTML projesi görseli">🌐</div>
-                <figcaption>Semantic HTML5 Portfolyo</figcaption>
-              </figure>
-              <h3>Semantic Portfolio</h3>
-              <p>Semantic HTML5 ve erişilebilirlik standartlarına uygun portfolyo sayfası.</p>
-              <ul className="skill-tags" role="list" aria-label="Kullanılan teknolojiler">
-                <li>HTML5</li>
-                <li>Erişilebilirlik</li>
-                <li>ARIA</li>
-              </ul>
-              <time dateTime="2025-02">Şubat 2025</time>
-            </article>
-
-            <article className="project-card">
-              <figure>
-                <div className="project-img" role="img" aria-label="Responsive Tasarım projesi görseli">📱</div>
-                <figcaption>Responsive Tasarım — LAB-3</figcaption>
-              </figure>
-              <h3>Responsive Layout</h3>
-              <p>CSS Grid, Flexbox ve mobile-first yaklaşımıyla oluşturulan responsive portfolyo.</p>
-              <ul className="skill-tags" role="list" aria-label="Kullanılan teknolojiler">
-                <li>CSS Grid</li>
-                <li>Flexbox</li>
-                <li>Responsive</li>
-              </ul>
-              <time dateTime="2025-03">Mart 2025</time>
-            </article>
-
-          </div>
-        </section>
-
-        {/* İLETİŞİM FORMU — LAB-2 Korundu */}
-        <section id="iletisim" aria-labelledby="iletisim-baslik">
-          <h2 id="iletisim-baslik">İletişim Formu</h2>
-
-          <form className="contact-form" noValidate onSubmit={(e) => e.preventDefault()}>
-
-            {/* Ad Soyad */}
-            <div className="form-group">
-              <label htmlFor="ad-soyad">Ad Soyad <span aria-hidden="true">*</span></label>
-              <input
-                type="text"
-                id="ad-soyad"
-                name="adSoyad"
-                required
-                minLength={3}
-                placeholder="Adınızı ve soyadınızı girin"
-                aria-describedby="ad-soyad-hata"
-                aria-required="true"
-              />
-              <small id="ad-soyad-hata" className="error-msg" role="alert">
-                Ad soyad en az 3 karakter olmalıdır.
-              </small>
+              {/* Sağ: Kişisel Bilgiler */}
+              <aside
+                className="bg-indigo-50 dark:bg-gray-800 border-l-4 border-indigo-500
+                  dark:border-indigo-400 rounded-lg p-6 w-full md:w-80 shrink-0"
+                aria-label="Kişisel Bilgiler"
+              >
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
+                  Kişisel Bilgiler
+                </h3>
+                <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm">
+                  <dt className="font-bold text-gray-700 dark:text-gray-300">Ad Soyad</dt>
+                  <dd className="text-gray-600 dark:text-gray-400">Abdulmecit ÖZTÜRK</dd>
+                  <dt className="font-bold text-gray-700 dark:text-gray-300">Öğrenci No</dt>
+                  <dd className="text-gray-600 dark:text-gray-400">235541034</dd>
+                  <dt className="font-bold text-gray-700 dark:text-gray-300">Bölüm</dt>
+                  <dd className="text-gray-600 dark:text-gray-400">Yazılım Mühendisliği</dd>
+                  <dt className="font-bold text-gray-700 dark:text-gray-300">Dönem</dt>
+                  <dd className="text-gray-600 dark:text-gray-400">2024–2025 Bahar</dd>
+                  <dt className="font-bold text-gray-700 dark:text-gray-300">Lab</dt>
+                  <dd className="text-gray-600 dark:text-gray-400">LAB-4</dd>
+                </dl>
+              </aside>
             </div>
+          </section>
 
-            {/* E-posta */}
-            <div className="form-group">
-              <label htmlFor="eposta">E-posta <span aria-hidden="true">*</span></label>
-              <input
-                type="email"
-                id="eposta"
-                name="eposta"
-                required
-                placeholder="ornek@email.com"
-                aria-describedby="eposta-hata"
-                aria-required="true"
-              />
-              <small id="eposta-hata" className="error-msg" role="alert">
-                Geçerli bir e-posta adresi giriniz.
-              </small>
+          {/* PROJELER */}
+          <section id="projeler" className="py-16 px-4 bg-gray-50 dark:bg-gray-900">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-10">
+                Projelerim
+              </h2>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Card variant="elevated" title="Web Lab Hello">
+                  <p>Vite ve React ile oluşturulan LAB-1 ve LAB-2 portfolyo projesi.</p>
+                  <div className="flex flex-wrap gap-1 mt-3">
+                    {['React', 'Vite', 'TypeScript'].map((t) => (
+                      <span key={t} className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-0.5 rounded-full">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </Card>
+
+                <Card variant="elevated" title="Semantic Portfolio">
+                  <p>Semantic HTML5 ve erişilebilirlik standartlarına uygun portfolyo sayfası.</p>
+                  <div className="flex flex-wrap gap-1 mt-3">
+                    {['HTML5', 'Erişilebilirlik', 'ARIA'].map((t) => (
+                      <span key={t} className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-0.5 rounded-full">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </Card>
+
+                <Card variant="elevated" title="Responsive Layout">
+                  <p>CSS Grid, Flexbox ve mobile-first yaklaşımıyla oluşturulan responsive portfolyo.</p>
+                  <div className="flex flex-wrap gap-1 mt-3">
+                    {['CSS Grid', 'Flexbox', 'Responsive'].map((t) => (
+                      <span key={t} className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-0.5 rounded-full">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </Card>
+              </div>
             </div>
+          </section>
 
-            {/* Öğrenci No */}
-            <div className="form-group">
-              <label htmlFor="ogrenci-no">Öğrenci Numarası <span aria-hidden="true">*</span></label>
-              <input
-                type="text"
-                id="ogrenci-no"
-                name="ogrenciNo"
-                required
-                minLength={9}
-                placeholder="Öğrenci numaranızı girin"
-                aria-describedby="ogrenci-hata"
-                aria-required="true"
-              />
-              <small id="ogrenci-hata" className="error-msg" role="alert">
-                Öğrenci numarası 9 haneli olmalıdır.
-              </small>
+          {/* İLETİŞİM */}
+          <section id="iletisim" className="py-16 px-4">
+            <div className="max-w-lg mx-auto">
+              <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">
+                İletişim
+              </h2>
+              <form className="space-y-4" noValidate onSubmit={(e) => e.preventDefault()}>
+                <Input id="name" label="Ad Soyad" placeholder="Adınızı girin" required />
+                <Input id="email" label="E-posta" type="email" placeholder="ornek@email.com" required />
+
+                <div className="space-y-1">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >
+                    Mesajınız
+                  </label>
+                  <textarea
+                    id="message"
+                    rows={5}
+                    required
+                    placeholder="Mesajınızı buraya yazın..."
+                    className="w-full px-3 py-2 rounded-lg border border-gray-300
+                      focus:ring-2 focus:ring-blue-500 focus:outline-none
+                      dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600
+                      transition-colors"
+                  />
+                </div>
+
+                <Button variant="primary" size="lg" type="submit" className="w-full">
+                  Gönder
+                </Button>
+              </form>
             </div>
-
-            {/* Mesaj */}
-            <div className="form-group">
-              <label htmlFor="mesaj">Mesaj <span aria-hidden="true">*</span></label>
-              <textarea
-                id="mesaj"
-                name="mesaj"
-                required
-                minLength={10}
-                rows={5}
-                placeholder="Mesajınızı buraya yazın..."
-                aria-describedby="mesaj-hata"
-                aria-required="true"
-              />
-              <small id="mesaj-hata" className="error-msg" role="alert">
-                Mesaj en az 10 karakter içermelidir.
-              </small>
-            </div>
-
-            <button type="submit">Gönder</button>
-          </form>
-        </section>
-
-      </main>
+          </section>
+        </main>
+      )}
 
       {/* FOOTER */}
-      <footer>
-        <p>© 2025 Abdulmecit ÖZTÜRK · Yazılım Mühendisliği · Web Tasarımı ve Programlama — LAB-3</p>
+      <footer className="bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700
+        text-center py-6 px-4 text-gray-500 dark:text-gray-400 text-sm">
+        <p>&copy; 2025 Abdulmecit ÖZTÜRK. Tüm hakları saklıdır.</p>
       </footer>
-    </>
+    </div>
   )
 }
 
