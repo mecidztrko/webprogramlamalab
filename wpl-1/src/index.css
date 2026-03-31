@@ -1,15 +1,17 @@
-/*
- * index.css — Yalnızca temel viewport/body reset.
- * Tüm tasarım App.css ve tokens.css üzerinden yönetilir.
- */
+@import "tailwindcss";
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
-body {
-  margin: 0;
-  min-width: 320px;
+@theme {
+  --color-primary: #1E3A8A;
+  --color-secondary: #2563EB;
+  --color-accent: #7C3AED;
+  --color-surface: #F9FAFB;
+  --color-muted: #6B7280;
+  --color-error: #DC2626;
+  --color-success: #16A34A;
+  --color-warning: #F59E0B;
+
+  --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family-mono: 'Fira Code', 'Consolas', monospace;
 }

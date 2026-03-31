@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "E-Ticaret Platformu",
+    "description": "React ile geliştirilmiş tam kapsamlı alışveriş uygulaması.",
+    "tech": ["React", "Node.js", "MongoDB"],
+    "year": 2024,
+    "featured": true,
+    "category": "fullstack"
+  },
+  {
+    "id": 2,
+    "title": "Kişisel Blog",
+    "description": "Next.js ve TailwindCSS ile tasarlanmış SEO dostu blog.",
+    "tech": ["Next.js", "TypeScript", "TailwindCSS"],
+    "year": 2023,
+    "featured": false,
+    "category": "frontend"
+  },
+  {
+    "id": 3,
+    "title": "Stok Takip API",
+    "description": "Firmalar için ürün stoklarını tutan yüksek performanslı REST API.",
+    "tech": ["Express", "TypeScript", "PostgreSQL"],
+    "year": 2022,
+    "featured": true,
+    "category": "backend"
+  },
+  {
+    "id": 4,
+    "title": "Hava Durumu Uygulaması",
+    "description": "Harici API kullanarak anlık hava durumunu gösteren React uygulaması.",
+    "tech": ["React", "CSS", "Fetch API"],
+    "year": 2023,
+    "featured": false,
+    "category": "frontend"
+  },
+  {
+    "id": 5,
+    "title": "Sosyal Medya Dashboard",
+    "description": "Kullanıcı etkileşim istatistiklerini gösteren admin paneli arayüzü.",
+    "tech": ["Vue.js", "Vuex", "SCSS"],
+    "year": 2021,
+    "featured": false,
+    "category": "frontend"
+  },
+  {
+    "id": 6,
+    "title": "Sohbet Aracı",
+    "description": "WebSockets kullanarak anlık mesajlaşma sağlayan iletişim aracı.",
+    "tech": ["React", "Socket.io", "Express"],
+    "year": 2024,
+    "featured": true,
+    "category": "fullstack"
+  }
+]
