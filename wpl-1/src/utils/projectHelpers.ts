@@ -1,52 +1,44 @@
-import type {
-  Project,
-  Category,
-  SortField,
-  SortOrder,
-} from "../types/project";
-
-export function filterBySearch(projects: Project[], query: string): Project[] {
-  if (!query.trim()) return projects;
-
-  const lower = query.toLowerCase();
-  return projects.filter(
-    (project) =>
-      project.title.toLowerCase().includes(lower) ||
-      project.description.toLowerCase().includes(lower) ||
-      project.tech.some((tech) => tech.toLowerCase().includes(lower)),
-  );
-}
-
-export function filterByCategory(
-  projects: Project[],
-  category: Category | "all",
-): Project[] {
-  if (category === "all") return projects;
-  return projects.filter((project) => project.category === category);
-}
-
-export function sortProjects(
-  projects: Project[],
-  field: SortField,
-  order: SortOrder,
-): Project[] {
-  const sorted = [...projects].sort((a, b) => {
-    if (field === "year") return a.year - b.year;
-    return a.title.localeCompare(b.title, "tr");
-  });
-
-  return order === "desc" ? sorted.reverse() : sorted;
-}
+import type { Project, Category, SortField, SortOrder } from "../types/project";
 
 export function applyFilters(
   projects: Project[],
   search: string,
   category: Category | "all",
   sortField: SortField,
-  sortOrder: SortOrder,
+  sortOrder: SortOrder
 ): Project[] {
-  let result = filterBySearch(projects, search);
-  result = filterByCategory(result, category);
-  result = sortProjects(result, sortField, sortOrder);
-  return result;
+  let filtered = projects;
+
+  // 1. Search filter
+  if (search.trim() !== "") {
+    const searchLower = search.toLowerCase();
+    filtered = filtered.filter(
+      (p) =>
+        p.title.toLowerCase().includes(searchLower) ||
+        p.description.toLowerCase().includes(searchLower) ||
+        p.tech.some((t) => t.toLowerCase().includes(searchLower))
+    );
+  }
+
+  // 2. Category filter
+  if (category !== "all") {
+    filtered = filtered.filter((p) => p.category === category);
+  }
+
+  // 3. Sorting
+  filtered.sort((a, b) => {
+    let aVal = a[sortField];
+    let bVal = b[sortField];
+
+    if (typeof aVal === "string" && typeof bVal === "string") {
+      aVal = aVal.toLowerCase();
+      bVal = bVal.toLowerCase();
+    }
+
+    if (aVal < bVal) return sortOrder === "asc" ? -1 : 1;
+    if (aVal > bVal) return sortOrder === "asc" ? 1 : -1;
+    return 0;
+  });
+
+  return filtered;
 }
